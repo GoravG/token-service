@@ -7,7 +7,8 @@ import (
 )
 
 type Config struct {
-	RedisAddr       string
+	RedisHost       string
+	RedisPort       string
 	RedisPassword   string
 	PublishInterval time.Duration
 	Channel         string
@@ -20,7 +21,8 @@ func FromEnv() *Config {
 		interval = 5
 	}
 	return &Config{
-		RedisAddr:       getEnv("REDIS_ADDR", "localhost:6379"),
+		RedisHost:       getEnv("REDIS_HOST", "localhost"),
+		RedisPort:       getEnv("REDIS_PORT", "6379"),
 		RedisPassword:   getEnv("REDIS_PASSWORD", ""),
 		PublishInterval: time.Duration(interval) * time.Second,
 		Channel:         getEnv("REDIS_CHANNEL", "tokens"),

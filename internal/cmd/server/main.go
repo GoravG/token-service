@@ -13,8 +13,10 @@ import (
 
 func main() {
 	cfg := config.FromEnv()
-
-	addr := cfg.RedisAddr
+	host := cfg.RedisHost
+	port := cfg.RedisPort
+	addr := host + ":" + port
+	log.Printf("Address: %s", addr)
 	channel := cfg.Channel
 	publishInterval := cfg.PublishInterval
 
